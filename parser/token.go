@@ -52,12 +52,13 @@ func (t Tokens) IsLeftOriented() bool {
 }
 
 func (t Tokens) ParseRight(offset int, _type TokenType, max_steps int) (string, error) {
-	max_steps = min(offset + max_steps, len(t.Tokens) - offset - 1)
+	max_steps = min(offset + max_steps, len(t.Tokens))
 	if t.Tokens[offset].Type == _type {
 		return "", errors.New("the element in offset is the same type as the choosen element type.")
 	}
 	i := 1
 	for i <= max_steps {
+		// FIXME: offset + i out of range. Maybe is fixed; don't know.
 		if t.Tokens[offset + i].Type == _type {
 			return t.Tokens[offset + i].Token, nil
 		}
@@ -67,13 +68,15 @@ func (t Tokens) ParseRight(offset int, _type TokenType, max_steps int) (string, 
 }
 
 func (t Tokens) ParseLeft(offset int, _type TokenType, max_steps int) (string, error) {
-	max_steps = min(offset + max_steps, len(t.Tokens) - offset - 1)
+	if offset - max_steps < 0 {
+		max_steps = offset
+	}
 	if t.Tokens[offset].Type == _type {
 		return "", errors.New("the element in offset is the same type as the choosen element type.")
 	}
 	i := 1
 	for i <= max_steps {
-		// FIXME: offset - i out of range.  
+		// FIXME: offset - i out of range. Maybe is fixed; don't know.
 		if t.Tokens[offset - i].Type == _type {
 			return t.Tokens[offset - i].Token, nil
 		}

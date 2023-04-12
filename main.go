@@ -10,7 +10,6 @@ import (
 )
 
 // TODO: add support for rar files.
-
 func parse(file string) {
 	zipped_content, err := fs.File(file)
 	if err != nil {
@@ -20,7 +19,7 @@ func parse(file string) {
 	for _, content := range zipped_content {
 		reader := strings.NewReader(content)
 		tokens := parser.Lexer(reader)
-		if len(tokens) == 0 {
+		if len(tokens.Tokens) == 0 {
 			continue	
 		}
 		if tokens.IsRightOriented() {
