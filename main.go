@@ -53,6 +53,8 @@ func parse(file string) {
 				}	
 			}
 		} else {
+			// FIXME: index out of range [-1]
+			continue
 			for i, t := range tokens.Tokens {
 				if t.Type == parser.Host {
 					host := t.Token
