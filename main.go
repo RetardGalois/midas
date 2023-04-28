@@ -28,11 +28,11 @@ func parse(file string) {
 					host := t.Token
 					username, err := tokens.ParseRight(i, parser.Username, 10)
 					if err != nil {
-						panic(fmt.Sprintf("Can't parse username. ERROR: %s", err))
+						fmt.Fprintf(os.Stderr, "WARNING: Can't parse username. %s\n", err)
 					}
 					password, err := tokens.ParseRight(i, parser.Password, 10)
 					if err != nil {
-						panic(fmt.Sprintf("Can't parse password. ERROR: %s", err))
+						fmt.Fprintf(os.Stderr, "WARNING: Can't parse password. %s\n", err)
 					}
 					fmt.Println(fmt.Sprintf("%s:%s:%s", strings.Trim(host, " "), strings.Trim(username, " "), strings.Trim(password, " ")))
 				}	

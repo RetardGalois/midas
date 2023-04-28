@@ -52,19 +52,22 @@ func (t Tokens) IsLeftOriented() bool {
 }
 
 func (t Tokens) ParseRight(offset int, _type TokenType, max_steps int) (string, error) {
-	max_steps = min(offset + max_steps, len(t.Tokens))
+	//max_steps = min(offset + max_steps, len(t.Tokens))
+	if offset + max_steps > len(t.Tokens) {
+		max_steps = len(t.Tokens) - offset - 1
+	}
 	if t.Tokens[offset].Type == _type {
 		return "", errors.New("the element in offset is the same type as the choosen element type.")
 	}
 	i := 1
-	for i <= max_steps {
+	for i <= max_steps  {
 		// FIXME: offset + i out of range. Maybe is fixed; don't know.
 		if t.Tokens[offset + i].Type == _type {
 			return t.Tokens[offset + i].Token, nil
 		}
 		i++
 	}
-	return "", errors.New(fmt.Sprintf("can't find a element in %d steps.", max_steps))
+	return "", errors.New(fmt.Sprintf("unable to find a element in %d steps.", max_steps))
 }
 
 func (t Tokens) ParseLeft(offset int, _type TokenType, max_steps int) (string, error) {
@@ -82,7 +85,7 @@ func (t Tokens) ParseLeft(offset int, _type TokenType, max_steps int) (string, e
 		}
 		i++
 	}
-	return "", errors.New(fmt.Sprintf("can't find a element in %d steps.", max_steps))
+	return "", errors.New(fmt.Sprintf("unable to find a element in %d steps.", max_steps))
 }
 
 func (t Tokens) ParseClosest(offset int, _type TokenType, max_steps int) (string, error) {
