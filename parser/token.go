@@ -52,7 +52,6 @@ func (t Tokens) IsLeftOriented() bool {
 }
 
 func (t Tokens) ParseRight(offset int, _type TokenType, max_steps int) (string, error) {
-	//max_steps = min(offset + max_steps, len(t.Tokens))
 	if offset + max_steps > len(t.Tokens) {
 		max_steps = len(t.Tokens) - offset - 1
 	}

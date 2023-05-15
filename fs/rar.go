@@ -29,9 +29,8 @@ func getRarPass(rar_file string) (string, error) {
 		if err == nil {
 			return pass, nil
 		}
-		fmt.Println(err)
 	}
-	return "", errors.New("can't guess the password. get the password and then update the passwords slice.")
+	return "", errors.New("unable to guess the password. get the password and then update the passwords slice.")
 }
 
 func ListRar(rar_file string) ([]string, error) {

@@ -30,7 +30,7 @@ func getZipPass(file *zip.File) (string, error) {
 			return pass, nil
 		}
 	}
-	return "", errors.New("can't guess the password. get the password and then update the passwords slice.")
+	return "", errors.New("unable to guess the password. get the password and then update the passwords slice.")
 }
 
 func ListZip(zip_file string) ([]string, error) {
