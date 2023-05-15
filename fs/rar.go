@@ -1,7 +1,7 @@
 package fs
 
 import (
-	"fmt"
+	_ "fmt"
 	_ "io"
 	_ "os"
 	"strings"
