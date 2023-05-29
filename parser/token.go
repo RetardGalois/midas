@@ -56,7 +56,7 @@ func (t Tokens) ParseRight(offset int, _type TokenType, max_steps int) (string, 
 		max_steps = len(t.Tokens) - offset - 1
 	}
 	if t.Tokens[offset].Type == _type {
-		return "", errors.New("the element in offset is the same type as the choosen element type.")
+		return "", errors.New(fmt.Sprintf("the element in offset %d is the same type as the choosen element type.", offset))
 	}
 	i := 1
 	for i <= max_steps  {
@@ -66,7 +66,7 @@ func (t Tokens) ParseRight(offset int, _type TokenType, max_steps int) (string, 
 		}
 		i++
 	}
-	return "", errors.New(fmt.Sprintf("unable to find a element in %d steps.", max_steps))
+	return "", errors.New(fmt.Sprintf("starting from the offset %d, unable to find a element in %d steps.", offset, max_steps))
 }
 
 func (t Tokens) ParseLeft(offset int, _type TokenType, max_steps int) (string, error) {
@@ -74,7 +74,7 @@ func (t Tokens) ParseLeft(offset int, _type TokenType, max_steps int) (string, e
 		max_steps = offset
 	}
 	if t.Tokens[offset].Type == _type {
-		return "", errors.New("the element in offset is the same type as the choosen element type.")
+		return "", errors.New(fmt.Sprintf("the element in offset %d is the same type as the choosen element type.", offset))
 	}
 	i := 1
 	for i <= max_steps {
@@ -84,13 +84,13 @@ func (t Tokens) ParseLeft(offset int, _type TokenType, max_steps int) (string, e
 		}
 		i++
 	}
-	return "", errors.New(fmt.Sprintf("unable to find a element in %d steps.", max_steps))
+	return "", errors.New(fmt.Sprintf("starting from the offset %d, unable to find a element in %d steps.", offset, max_steps))
 }
 
 func (t Tokens) ParseClosest(offset int, _type TokenType, max_steps int) (string, error) {
 	max_steps = min(offset + max_steps, len(t.Tokens) - offset - 1)
 	if t.Tokens[offset].Type == _type {
-		return "", errors.New("the element in offset is the same type as the choosen element type.")
+		return "", errors.New(fmt.Sprintf("the element in offset %d is the same type as the choosen element type.", offset))
 	}
 	i := 1
 	abs_right := 0
