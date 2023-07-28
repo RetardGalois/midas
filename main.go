@@ -82,24 +82,3 @@ func main() {
 	}
 	parse(os.Args[1])
 }
-
-/*
-func main() {
-	z := archiver.Rar{
-		ContinueOnError:        true,
-		ImplicitTopLevelFolder: false,
-	}
-	z.Password = "https://t.me/ObserverPrivate"
-	err := z.Walk("teste.rar", func(f archiver.File) error {
-		//buffer := make([]byte, 1024)
-		//f.ReadCloser.Read(buffer)
-		fmt.Println(f.FileInfo.Name())
-		zfh, ok := f.Header.(zip.FileHeader)
-		if ok {
-			fmt.Println("Filename:", zfh.Name)
-		}
-		return nil
-	})
-	fmt.Println(err)
-}
-*/
